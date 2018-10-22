@@ -1,0 +1,8 @@
+# Node dependencies
+node_modules
+
+# Credentials
+.authrc
+
+# Any generated reports
+*.csv

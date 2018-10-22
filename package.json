@@ -1,0 +1,35 @@
+{
+  "name": "onepoint-job-costing",
+  "version": "0.1.0",
+  "description": "OnePoint job costing data sync",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulholden2/onepoint-job-costing.git"
+  },
+  "keywords": [
+    "one",
+    "point",
+    "job",
+    "cost",
+    "dashboard",
+    "report"
+  ],
+  "author": "Paul Holden",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulholden2/onepoint-job-costing/issues"
+  },
+  "homepage": "https://github.com/paulholden2/onepoint-job-costing#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "csvjson": "^5.1.0",
+    "moment": "^2.22.2",
+    "onepoint-node-sdk": "^1.0.4",
+    "rc": "^1.2.8",
+    "springcm-node-sdk": "^1.6.0"
+  }
+}

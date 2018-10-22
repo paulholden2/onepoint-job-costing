@@ -40,22 +40,31 @@ async.waterfall([
     });
   },
   (callback) => {
-    var year = 2017;
+    var start = moment('01/01/2017', 'MM/DD/YYYY');
+    var now = moment();
 
+    // From/To ranges
     var ranges = [];
 
-    while (year < moment().year()) {
+    while (true) {
+      // End of month date
+      var eom = start.clone().add(1, 'months').subtract(1, 'day');
+
+      if (eom.isAfter(now)) {
+        break;
+      }
+
       ranges.push({
-        from: `${year}-01-01`,
-        to: `${year}-12-31`
+        from: start.format('YYYY-MM-DD'),
+        to: eom.format('YYYY-MM-DD')
       });
 
-      year += 1;
+      start.add(1, 'month');
     }
 
     ranges.push({
-      from: `${year}-01-01`,
-      to: moment().format('YYYY-MM-DD')
+      from: start.format('YYYY-MM-DD'),
+      to: now.format('YYYY-MM-DD')
     });
 
     var data = [];
@@ -102,6 +111,7 @@ async.waterfall([
     });
 
     ws.write(data, () => {
+      console.log('Combined and converted report to CSV')
       callback(null, fileName);
     });
   },
@@ -111,12 +121,16 @@ async.waterfall([
         return callback(err);
       }
 
+      console.log('Retrieved report destination folder');
+
       springCm.uploadDocument(folder, fs.createReadStream(fileName), {
         fileType: 'csv'
       }, (err) => {
         if (err) {
           return callback(err);
         }
+
+        console.log('Uploaded report to SpringCM');
 
         callback();
       });
@@ -127,6 +141,8 @@ async.waterfall([
     console.log(err);
     process.exit(1);
   }
+
+  console.log('Done');
 
   process.exit(0);
 })

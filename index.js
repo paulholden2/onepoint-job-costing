@@ -117,9 +117,6 @@ async.waterfall([
     });
   },
   (fileName, callback) => {
-    return callback();
-  },
-  (fileName, callback) => {
     springCm.getFolder('/IS/Job Costing Dashboard/Labor Report', (err, folder) => {
       if (err) {
         return callback(err);

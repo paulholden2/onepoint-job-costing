@@ -40,7 +40,7 @@ async.waterfall([
     });
   },
   (callback) => {
-    var start = moment('10/01/2018', 'MM/DD/YYYY');
+    var start = moment('01/01/2017', 'MM/DD/YYYY');
     var now = moment();
 
     // From/To ranges

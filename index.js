@@ -40,7 +40,7 @@ async.waterfall([
     });
   },
   (callback) => {
-    var start = moment('01/01/2017', 'MM/DD/YYYY');
+    var start = moment('10/01/2018', 'MM/DD/YYYY');
     var now = moment();
 
     // From/To ranges
@@ -107,6 +107,7 @@ async.waterfall([
     var ws = fs.createWriteStream(fileName);
     var data = csvjson.toCSV(data, {
       delimiter: ',',
+      wrap: '"',
       headers: 'key'
     });
 
@@ -114,6 +115,9 @@ async.waterfall([
       console.log('Combined and converted report to CSV')
       callback(null, fileName);
     });
+  },
+  (fileName, callback) => {
+    return callback();
   },
   (fileName, callback) => {
     springCm.getFolder('/IS/Job Costing Dashboard/Labor Report', (err, folder) => {

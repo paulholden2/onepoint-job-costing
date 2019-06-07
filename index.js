@@ -70,13 +70,13 @@ async.waterfall([
     var data = [];
 
     async.eachSeries(ranges, (range, callback) => {
-      onePoint.runReport(37393044, {
+      onePoint.runReport(38396076, {
         company: {
           short_name: 'STRIA'
         },
         selectors: [
           {
-            name: 'PPDate',
+            name: 'EntryDate',
             parameters: {
               RangeType: '2',
               FromDate: range.from,
